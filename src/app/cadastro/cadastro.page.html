@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>{{this.carro.nome}}</h2>
+  <p>R${{this.precoTotal}}</p>
+  <form #formulario="ngForm" [formGroup]="agendaForm" (ngSubmit)="agenda()">
+    <ion-item>
+      <ion-label position="stacked">Nome:</ion-label>
+      <ion-input formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item 
+      text-wrap 
+      *ngIf="agendaForm.get('nome').invalid && (formulario.submitted || agendaForm.get('nome').touched)">
+      <ion-label 
+        position="stacked"
+        color="danger">
+        Seu nome deve ser informado.
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Endereço:</ion-label>
+      <ion-input formControlName="endereco"></ion-input>
+    </ion-item>
+    <ion-item 
+      text-wrap 
+      *ngIf="agendaForm.get('endereco').invalid && (formulario.submitted || agendaForm.get('endereco').touched)">
+      <ion-label 
+        position="stacked"
+        color="danger">
+        Seu endereço deve ser informado.
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item 
+      text-wrap 
+      *ngIf="agendaForm.get('email').invalid && (formulario.submitted || agendaForm.get('email').touched)">
+      <ion-label 
+        position="stacked"
+        color="danger">
+        Informe um e-mail válido.
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Data</ion-label>
+      <ion-datetime formControlName="data" displayFormat="DD/MM/YY"></ion-datetime>
+    </ion-item>
+    <ion-item 
+      text-wrap 
+      *ngIf="agendaForm.get('data').invalid && (formulario.submitted || agendaForm.get('data').touched)">
+      <ion-label 
+        position="stacked"
+        color="danger">
+        Data deve ser informadaa.
+      </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button size="small" type="submit" (click)="formulario.ngSubmit.emit()">
+          <ion-icon name="send"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>

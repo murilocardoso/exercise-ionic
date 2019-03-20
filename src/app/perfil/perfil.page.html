@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="(this.usuarioLogado$ | async) as usuarioLogado">  
+  <ion-item lines="none">  
+    <div class="avatar-wrapper">
+      <ion-avatar class="img-avatar" *ngIf="(avatar$ | async) as avatar">
+        <img [src]="avatar">
+      </ion-avatar>    
+      <ion-button (click)="tiraFoto()" class="btn-tirar-foto" readonly icon-only shape="round">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-item>
+  <ion-card>
+    <ion-item>
+      <ion-icon name="contact" slot="start"></ion-icon>
+      <p>{{usuarioLogado.nome}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="calendar" slot="start"></ion-icon>
+      <p>{{usuarioLogado.dataNascimento}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="at" slot="start"></ion-icon>
+      <p>{{usuarioLogado.email}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" slot="start"></ion-icon>
+      <p>{{usuarioLogado.telefone}}</p>
+    </ion-item>    
+  </ion-card>
+</ion-content>

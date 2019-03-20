@@ -1,12 +1,26 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-toggle menu="menu1">
+        <ion-button fill="clear">
+          <ion-icon slot="icon-only" name="menu"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      Alura Car
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <ion-list>
+    <ion-item *ngFor="let carro of carros" (click)="selecionaCarro(carro)">
+      <ion-label>
+        <h2>{{carro.nome}}</h2>
+        <p>R${{carro.preco}}</p>
+      </ion-label>
+    </ion-item> 
+  </ion-list>
 </ion-content>
+

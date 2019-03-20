@@ -1,3 +1,44 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane>
+    <ion-menu 
+      side="start" 
+      contentId="content1" 
+      menuId="menu1" 
+      [disabled]="disabledMenu">
+      <ion-content>
+        <ion-list>
+          <ion-item-group>
+            <ion-item lines="none">
+              <div>
+                <div>
+                  <ion-avatar *ngIf="(avatar$ | async) as avatar">
+                      <img [src]="avatar">
+                  </ion-avatar> 
+                </div>
+                <div>
+                  <ion-label *ngIf="(usuarioLogado$ | async) as usuarioLogado">
+                      <h2>{{usuarioLogado.nome}}</h2>
+                      <p>{{usuarioLogado.email}}</p>
+                  </ion-label>
+                </div>
+              </div>
+            </ion-item>
+          </ion-item-group>
+          <ion-item-group>
+            <ion-item *ngFor="let pagina of paginas" >
+              <ion-menu-toggle auto-hide="false">
+                <ion-button color="dark" size="default" fill="clear" (click)="navegaMenu(pagina.rota)">
+                  <ion-icon slot="start" [name]="pagina.icone" color="dark"></ion-icon>
+                  {{pagina.titulo}}
+                </ion-button>
+              </ion-menu-toggle>
+            </ion-item>  
+          </ion-item-group>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="content1" main [swipeGesture]="false"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>
+
+  

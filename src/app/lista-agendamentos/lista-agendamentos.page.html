@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agendamentos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item [class.falha]="!agendamento.enviado" *ngFor="let agendamento of agendamentos">
+      <ion-label>
+        <h2>{{agendamento.nomeCliente}} - {{agendamento.data | date:'dd/MM/yyyy'}}</h2>
+        <p>{{agendamento.modeloCarro}} - {{agendamento.precoTotal}}</p> 
+      </ion-label>
+      <ion-badge slot="end" *ngIf="agendamento.confirmado && !agendamento.visualizado">Confirmado!</ion-badge>
+      <ion-button *ngIf="!agendamento.enviado" (click)="reenvia(agendamento)" fill="clear" slot="end">
+        <ion-icon fill="clear" slot="icon-only" name="refresh"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
